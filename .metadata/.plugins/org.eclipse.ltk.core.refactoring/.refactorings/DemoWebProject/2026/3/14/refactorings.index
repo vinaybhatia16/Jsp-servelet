@@ -1,0 +1,9 @@
+1774958956303	Rename package 'com.rays.jdbcsource'
+1774960086043	Delete element
+1774960094340	Delete element
+1774960147010	Delete element
+1774960240113	Delete element
+1774961307294	Rename type 'JdbcDataSource'
+1774963423374	Rename resource 'Index.jsp'
+1774963657166	Move 'web.xml' to 'lib'
+1774963663991	Move 'web.xml' to 'WEB-INF'
