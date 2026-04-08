@@ -1,4 +1,5 @@
 package com.rays.model;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -64,7 +65,7 @@ public class User1Model {
 		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt = conn.prepareStatement(
-				"update user1 set firstName = ?, lastName = ?, login = ?, password = ?, dob = ? where id = ?");
+				"update user1 set first_Name = ?, last_Name = ?, login = ?, password = ?, dob = ? where id = ?");
 
 		pstmt.setString(1, bean.getFirstName());
 		pstmt.setString(2, bean.getLastName());
@@ -98,7 +99,7 @@ public class User1Model {
 
 	public User1Bean findByLogin(String login) throws Exception {
 
-		Connection conn = JDBCDataSource .getConnection();
+		Connection conn = JDBCDataSource.getConnection();
 
 		PreparedStatement pstmt = conn.prepareStatement("select * from user1 where login = ?");
 
@@ -175,15 +176,19 @@ public class User1Model {
 
 	public List<User1Bean> search(User1Bean bean, int pageNo, int pageSize) throws Exception {
 
-		Connection conn =JDBCDataSource.getConnection();
+		Connection conn = JDBCDataSource.getConnection();
 		StringBuffer sql = new StringBuffer("select * from user1 where 1=1");
 
 		if (bean != null) {
 			if (bean.getFirstName() != null && bean.getFirstName().length() > 0) {
-				sql.append(" and firstName like '" + bean.getFirstName() + "%'");
+				sql.append(" and first_Name like '" + bean.getFirstName() + "%'");
 			}
 			if (bean.getLastName() != null && bean.getLastName().length() > 0) {
-				sql.append(" and lastName like '" + bean.getLastName() + "%'");
+				sql.append(" and last_Name like '" + bean.getLastName() + "%'");
+			}
+
+			if (bean.getLogin() != null && bean.getLogin().length() > 0) {
+				sql.append(" and login like '" + bean.getLogin() + "%'");
 			}
 		}
 

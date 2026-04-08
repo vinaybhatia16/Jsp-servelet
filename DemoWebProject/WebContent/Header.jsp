@@ -18,6 +18,7 @@
 	<a href="UserCtl">Add User</a> |
 	<a href="UserListCtl">User List</a> |
 	<a href="LoginCtl?operation=logout">Logout</a> |
+	<a href="">Marksheet</a> |
 	<%
 	} else {
 	%>
@@ -25,6 +26,7 @@
 	<h3>Hii, Guest</h3>
 	<a href="LoginCtl">Login</a> |
 	<a href="UserRegistrationCtl">Sign Up</a> |
+	<a href="">Marksheet</a> |
 	<%
 	}
 	%>

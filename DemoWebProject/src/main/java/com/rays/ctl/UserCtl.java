@@ -12,47 +12,70 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.rays.bean.User1Bean;
 import com.rays.model.User1Model;
+
 @WebServlet("/UserCtl")
-public class UserCtl extends HttpServlet{
-	
+public class UserCtl extends HttpServlet {
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		
+		User1Model model = new User1Model();
+		User1Bean bean = new User1Bean();
+		
+		String id = request.getParameter("id");
+		
+		if(id != null) {
+			try {
+				bean=model.findByPk(Integer.parseInt(id));
+				request.setAttribute("bean", bean);
+				
+			} catch (Exception e) {
+				
+			}
+		}
+
 		RequestDispatcher rd = request.getRequestDispatcher("UserView.jsp");
 		rd.forward(request, response);
 	}
-@Override
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	User1Bean bean = new User1Bean();
-	User1Model model = new User1Model();
-	
- 
 
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String op = request.getParameter("operation");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		User1Bean bean = new User1Bean();
+		User1Model model = new User1Model();
 
-	String firstName = request.getParameter("firstName");
-	String lastName = request.getParameter("lastName");
-	String login = request.getParameter("login");
-	String password = request.getParameter("password");
-	String dob = request.getParameter("dob");
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String login = request.getParameter("login");
+		String password = request.getParameter("password");
+		String dob = request.getParameter("dob");
 
-	try {
-		bean.setFirstName(firstName);
-		bean.setLastName(lastName);
-		bean.setLogin(login);
-		bean.setPassword(password);
-		bean.setDob(sdf.parse(dob));
-		model.add(bean);
-		request.setAttribute("successMsg", "user register successfully");
-	} catch (Exception e) {
-		request.setAttribute("erorrMsg", e.getMessage());
-		e.printStackTrace();
+		try {
+			bean.setFirstName(firstName);
+			bean.setLastName(lastName);
+			bean.setLogin(login);
+			bean.setPassword(password);
+			bean.setDob(sdf.parse(dob));
+			
+			if(op.equals("update")){
+			bean.setId(Integer.parseInt(request.getParameter("id")));
+			model.update(bean);
+			request.setAttribute("successMsg", "user updated successfully");
+			}else {
+			model.add(bean);
+			request.setAttribute("successMsg", "user register successfully");
+			}
+		} catch (Exception e) {
+			request.setAttribute("erorrMsg", e.getMessage());
+			e.printStackTrace();
+		}
+
+		RequestDispatcher rd = request.getRequestDispatcher("UserView.jsp");
+		rd.forward(request, response);
+
 	}
-
-	RequestDispatcher rd = request.getRequestDispatcher("UserView.jsp");
-	rd.forward(request, response);
-
-}
-
 
 }
