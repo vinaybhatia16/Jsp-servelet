@@ -74,8 +74,8 @@ public class TestInvoice {
 		
 
 	 	
-	 	bean.setInvoiceId(2);
-	  //	bean.setShift("morning");
+	 	//bean.setInvoiceId(2);
+	  bean.setName("vinay");
 
 
 		List<InvoiceBean> list = model.Search(bean);

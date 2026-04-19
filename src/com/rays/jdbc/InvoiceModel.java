@@ -56,7 +56,7 @@ public class InvoiceModel {
 			pstmt.setInt(3, bean.getTotalAmount());
 			pstmt.setString(4, bean.getStatus());
 			pstmt.setInt(5, bean.getInvoiceId());
-			int i =spstmt.executeUpdate();
+			int i =pstmt.executeUpdate();
 
 			System.out.println(i + " row updated(records updated...)");
 
@@ -103,7 +103,7 @@ public class InvoiceModel {
 
 		Connection conn = null;
 		InvoiceBean bean = null;
-
+		{}
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rays", "root", "vinu1997");
