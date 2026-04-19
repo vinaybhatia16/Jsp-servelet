@@ -15,8 +15,8 @@ import com.rays.model.User1Model;
 
 @WebServlet("/UserRegistrationCtl")
 
-public class UserRegistrationCtl extends HttpServlet{
-	
+public class UserRegistrationCtl extends HttpServlet {
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -54,6 +54,5 @@ public class UserRegistrationCtl extends HttpServlet{
 		rd.forward(request, response);
 
 	}
-
 
 }
